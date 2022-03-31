@@ -18,6 +18,12 @@ const OPTION_LEVEL: Fig.Option = {
   },
 };
 
+const OPTION_QUIET: Fig.Option = {
+  name: "--quiet",
+  description:
+    "Do not output anything, just report a status code for correct config",
+};
+
 const OPTION_VERSION: Fig.Option = {
   name: ["--version", "-V"],
   description: "Prints version information",
@@ -153,6 +159,20 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [OPTION_HELP, OPTION_LEVEL],
+    },
+    {
+      name: "info",
+      description: "Print information about the Sentry server",
+      options: [
+        {
+          name: "--config-status-json",
+          description:
+            "Return the status of the config that sentry-cli loads as JSON dump. This can be used by external tools to aid the user towards configuration",
+        },
+        OPTION_HELP,
+        OPTION_LEVEL,
+        OPTION_QUIET,
+      ],
     },
   ],
   options: [
